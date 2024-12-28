@@ -46,20 +46,49 @@ Un environnement virtuel permet d'isoler les dépendances du projet. Suivez ces 
      source venv/bin/activate
      ```
 
-3. Installez les dépendances listées dans le fichier `requirements.txt` :
+3. **Pour les utilisateurs souhaitant utiliser leur GPU (CUDA)** :
+   Si vous souhaitez activer l'accélération GPU avec CUDA, **installez PyTorch avec la version CUDA compatible avant d'installer les autres dépendances**. 
+
+   - **Pour CUDA 11.8** :
+     ```bash
+     pip install torch==2.3.1+cu118 torchvision==0.17.2+cu118 torchaudio==2.3.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html
+     ```
+
+   - **Pour CUDA 11.7** :
+     ```bash
+     pip install torch==2.3.1+cu117 torchvision==0.17.2+cu117 torchaudio==2.3.1+cu117 -f https://download.pytorch.org/whl/torch_stable.html
+     ```
+
+4. Installez les dépendances listées dans le fichier `requirements.txt` :
    ```bash
    pip install -r requirements.txt
    ```
 
-4. (Facultatif) Pour quitter l'environnement virtuel, utilisez :
+5. (Facultatif) Pour quitter l'environnement virtuel, utilisez :
    ```bash
    deactivate
    ```
+
+6. (Optionnel) **Ajouter l'environnement virtuel comme kernel Jupyter**
+   Si vous souhaitez exécuter les notebooks avec cet environnement virtuel, ajoutez-le comme kernel Jupyter :
+
+   1. Installez le package `ipykernel` dans l'environnement virtuel :
+      ```bash
+      pip install ipykernel
+      ```
+
+   2. Ajoutez l'environnement virtuel comme kernel Jupyter :
+      ```bash
+      python -m ipykernel install --user --name=venv --display-name "Python (venv)"
+      ```
+
+   3. Dans Jupyter Notebook ou JupyterLab, sélectionnez le kernel **Python (venv)** pour exécuter les notebooks.
 
 #### **Explication** :
 - `venv` crée un environnement isolé pour les dépendances Python.
 - L'activation permet à votre terminal d'utiliser cet environnement au lieu du Python global.
 - Les dépendances spécifiques au projet sont installées via `requirements.txt`.
+- L'ajout comme kernel Jupyter garantit que les notebooks utilisent le bon environnement virtuel.
 
 ---
 
@@ -88,21 +117,7 @@ HUGGINGFACEHUB_API_TOKEN=<votre_clé>
 
 ---
 
-### 4. Configuration pour utiliser le GPU (recommandé pour entraîner le modèle LLM pour les utilisateurs possédant une carte NVIDIA)
-Si vous souhaitez utiliser un GPU pour entraîner ou exécuter des modèles, installez PyTorch avec la version CUDA adaptée à votre système :
-
-```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
- ```
- - Remplacez `cu118` par la version CUDA installée sur votre machine (par exemple `cu117` pour CUDA 11.7).
-
-#### **Explication** :
-- Ces étapes permettent de configurer et de vérifier l'accès au GPU pour accélérer les calculs.
-- PyTorch est la bibliothèque utilisée pour exploiter le GPU via CUDA.
-
----
-
-### 5. Utilisation avec Google Colab (Optionnel)
+### 4. Utilisation avec Google Colab (Optionnel)
 Si vous travaillez sur Google Colab, vous pouvez créer et utiliser le fichier `.env` depuis Google Drive :
 
 1. Montez votre Google Drive dans Colab :
