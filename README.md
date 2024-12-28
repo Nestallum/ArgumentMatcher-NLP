@@ -1,10 +1,9 @@
-# ArgumentMatcher-NLP
-This project aims to develop and compare multiple argument mining systems in natural language texts, using naive approaches, large language models (LLM)-based methods, and custom techniques.
-
-# Projet Python avec Hugging Face Hub
+# Projet ArgumentMatcher-NLP avec Hugging Face Hub
 
 ## Introduction
-Ce projet utilise Hugging Face Hub pour accéder à des modèles et jeux de données d'IA. Ce guide explique comment configurer l'environnement, installer les dépendances et utiliser la clé API Hugging Face pour s'authentifier.
+Ce projet vise à développer et comparer différents systèmes de mining d'arguments dans des textes en langage naturel, en utilisant des approches naïves, des modèles de langage large (LLM) et des techniques personnalisées.
+
+Ce guide explique comment configurer l'environnement, installer les dépendances et utiliser la clé API Hugging Face pour s'authentifier.
 
 ---
 
@@ -20,8 +19,8 @@ Ce projet utilise Hugging Face Hub pour accéder à des modèles et jeux de donn
 ### 1. Cloner le projet
 Commencez par cloner ce dépôt sur votre machine locale :
 ```bash
-git clone https://github.com/ton-utilisateur/ton-repo.git
-cd ton-repo
+git clone https://github.com/Nestallum/ArgumentMatcher-NLP.git
+cd ArgumentMatcher-NLP
 ```
 
 #### **Explication** :
@@ -89,30 +88,13 @@ HUGGINGFACEHUB_API_TOKEN=<votre_clé>
 
 ---
 
-### 4. Configuration pour utiliser le GPU (optionnel)
-Si vous souhaitez utiliser un GPU pour entraîner ou exécuter des modèles, suivez les étapes ci-dessous :
+### 4. Configuration pour utiliser le GPU (recommandé pour entraîner le modèle LLM pour les utilisateurs possédant une carte NVIDIA)
+Si vous souhaitez utiliser un GPU pour entraîner ou exécuter des modèles, installez PyTorch avec la version CUDA adaptée à votre système :
 
-1. Assurez-vous d'avoir une carte graphique NVIDIA et que les pilotes CUDA sont installés.
-   - Téléchargez et installez les [pilotes CUDA](https://developer.nvidia.com/cuda-downloads).
-   - Installez également [cuDNN](https://developer.nvidia.com/cudnn).
-
-2. Vérifiez que PyTorch est compatible avec CUDA :
-   ```bash
-   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-   ```
-   - Remplacez `cu118` par la version CUDA installée sur votre machine (par exemple `cu117` pour CUDA 11.7).
-
-3. Testez la disponibilité du GPU dans votre environnement :
-   ```python
-   import torch
-
-   print("PyTorch version:", torch.__version__)
-   print("CUDA available:", torch.cuda.is_available())
-   if torch.cuda.is_available():
-       print("GPU:", torch.cuda.get_device_name(0))
-   else:
-       print("Aucun GPU détecté ou CUDA n'est pas installé.")
-   ```
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+ ```
+ - Remplacez `cu118` par la version CUDA installée sur votre machine (par exemple `cu117` pour CUDA 11.7).
 
 #### **Explication** :
 - Ces étapes permettent de configurer et de vérifier l'accès au GPU pour accélérer les calculs.
@@ -157,26 +139,14 @@ Si vous travaillez sur Google Colab, vous pouvez créer et utiliser le fichier `
 ## Structure du projet
 ```
 .
-├── venv/                  # Environnement virtuel (exclu du repo Git)
-├── .env                   # Clé Hugging Face (non poussé sur GitHub)
-├── requirements.txt       # Dépendances du projet
-├── main.py                # Fichier principal du projet
-├── README.md              # Documentation du projet
+├── venv/                           # Environnement virtuel (exclu du repo Git)
+├── .env                            # Clé Hugging Face (non poussé sur GitHub)
+├── scripts/
+│   ├── evaluate.py                 # Script pour évaluer les performances des modèles
+│   ├── view_data.py                # Script pour visualiser les données
+├── naive_argument_matcher.ipynb    # Notebook pour les approches naïves
+├── llm_argument_matcher.ipynb      # Notebook pour les approches basées sur les LLM
+├── requirements.txt                # Dépendances du projet
+├── README.md                       # Documentation du projet
 ```
-
-#### **Explication** :
-- `venv/` contient l'environnement virtuel et doit être exclus avec `.gitignore`.
-- `.env` contient les variables sensibles comme les clés API.
-- `requirements.txt` liste les dépendances du projet pour une installation facile.
-
 ---
-
-## Contribuer
-Les contributions sont les bienvenues ! Merci de :
-- Créer une branche pour vos modifications.
-- Documenter vos changements avant de soumettre une pull request.
-
----
-
-## Licence
-Ce projet est sous licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.
