@@ -1,0 +1,21 @@
+# # Update pip to the latest version before installing the packages
+pip
+
+# Install the python-dotenv package
+python-dotenv
+
+# Main libraries for deep learning
+torch
+torchvision
+torchaudio
+
+# Hugging Face and NLP tools
+transformers
+datasets
+
+# GPU optimization and quantization libraries
+accelerate
+bitsandbytes
+
+# Environment variable management
+python-dotenv
