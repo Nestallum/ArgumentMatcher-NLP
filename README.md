@@ -10,7 +10,7 @@ Ce guide explique comment configurer l'environnement, installer les dépendances
 ## Prérequis
 - Python 3.8 ou supérieur
 - `pip` installé
-- Une carte graphique NVIDIA avec CUDA (pour utiliser un GPU)
+- Une carte graphique NVIDIA avec CUDA (pour bénéficier de l'accélération GPU)
 
 ---
 
@@ -28,25 +28,7 @@ Cette commande copie le projet depuis le dépôt GitHub vers votre ordinateur lo
 
 ---
 
-### 2. Préparer l'environnement pour les utilisateurs GPU (optionnel)
-Si vous souhaitez utiliser un GPU pour entraîner ou exécuter des modèles, vous devez installer CUDA avant d'installer les packages.
-
-1. Rendez-vous sur le site officiel de CUDA pour télécharger et installer la version appropriée pour votre GPU NVIDIA :
-   [Télécharger CUDA](https://developer.nvidia.com/cuda-downloads)
-
-2. Suivez les instructions pour installer CUDA et cuDNN correspondant à votre version.
-
-3. Vérifiez que CUDA est bien installé :
-   ```bash
-   nvcc --version
-   ```
-   Cette commande doit afficher la version de CUDA installée.
-
-Une fois que CUDA est configuré, vous pouvez continuer avec les étapes suivantes pour installer les dépendances.
-
----
-
-### 3. Créer un environnement virtuel
+### 2. Créer un environnement virtuel
 Un environnement virtuel permet d'isoler les dépendances du projet. Suivez ces étapes :
 
 1. Créez un environnement virtuel dans le répertoire du projet :
@@ -63,41 +45,61 @@ Un environnement virtuel permet d'isoler les dépendances du projet. Suivez ces 
      ```bash
      source venv/bin/activate
      ```
-
-3. Installez les dépendances listées dans le fichier `requirements.txt` :
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. (Facultatif) Pour quitter l'environnement virtuel, utilisez :
-   ```bash
-   deactivate
-   ```
-
-5. (Optionnel) **Ajouter l'environnement virtuel comme kernel Jupyter**
-   Si vous souhaitez exécuter les notebooks avec cet environnement virtuel, ajoutez-le comme kernel Jupyter :
-
-   1. Installez le package `ipykernel` dans l'environnement virtuel :
+     
+   - **Note** : Pour quitter l'environnement virtuel, utilisez :
       ```bash
-      pip install ipykernel
+      deactivate
       ```
 
-   2. Ajoutez l'environnement virtuel comme kernel Jupyter :
-      ```bash
-      python -m ipykernel install --user --name=venv --display-name "Python (venv)"
-      ```
-
-   3. Dans Jupyter Notebook ou JupyterLab, sélectionnez le kernel **Python (venv)** pour exécuter les notebooks.
-
-#### **Explication** :
-- `venv` crée un environnement isolé pour les dépendances Python.
-- L'activation permet à votre terminal d'utiliser cet environnement au lieu du Python global.
-- Les dépendances spécifiques au projet sont installées via `requirements.txt`.
-- L'ajout comme kernel Jupyter garantit que les notebooks utilisent le bon environnement virtuel.
+3. Une fois l'environnement virtuel activé, passez à l'installation des dépendances spécifiques.
 
 ---
 
-### 4. Configuration de la clé Hugging Face
+### 3. Préparer l'environnement pour PyTorch et accélération GPU (optionnel)
+
+Si vous souhaitez utiliser un GPU pour entraîner ou exécuter des modèles, vous devez installer CUDA avant d'installer les packages PyTorch GPU.
+
+1. Rendez-vous sur le site officiel de CUDA pour télécharger et installer la version appropriée pour votre GPU NVIDIA :
+   [**Télécharger CUDA**](https://developer.nvidia.com/cuda-downloads)
+
+2. Suivez les instructions pour installer CUDA et cuDNN correspondant à votre version.
+
+3. Vérifiez que CUDA est bien installé :
+   ```bash
+   nvcc --version
+   ```
+   Cette commande doit afficher la version de CUDA installée.
+
+4. Installez PyTorch en fonction de votre matériel :
+   - **Pour les utilisateurs GPU** :
+     Installez la version GPU-optimisée (CUDA 11.8) :
+     ```bash
+     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+     ```
+
+   - **Pour les utilisateurs CPU uniquement** :
+     Installez la version CPU de PyTorch :
+     ```bash
+     pip install torch torchvision torchaudio
+     ```
+
+> **Note** : Si CUDA n'est pas installé ou si le GPU n'est pas compatible, PyTorch tombera automatiquement en mode CPU.
+
+---
+
+### 4. Installer les dépendances restantes
+Installez les autres dépendances listées dans le fichier `requirements.txt` :
+```bash
+pip install -r requirements.txt
+```
+
+#### **Explication** :
+- Les dépendances spécifiques au projet sont installées via `requirements.txt`.
+- Assurez-vous d'avoir correctement installé PyTorch avant cette étape.
+
+---
+
+### 5. Configuration de la clé Hugging Face
 
 #### a) Créer un compte Hugging Face
 1. Accédez à la [page de connexion](https://huggingface.co/login) et créez un compte si ce n'est pas déjà fait.
@@ -122,7 +124,24 @@ HUGGINGFACEHUB_API_TOKEN=<votre_clé>
 
 ---
 
-### 5. Utilisation avec Google Colab (Optionnel)
+### 6. Ajouter l'environnement virtuel comme kernel Jupyter (Optionnel)
+Si vous souhaitez exécuter les notebooks avec cet environnement virtuel, ajoutez-le comme kernel Jupyter :
+
+1. Installez le package `ipykernel` dans l'environnement virtuel :
+   ```bash
+   pip install ipykernel
+   ```
+
+2. Ajoutez l'environnement virtuel comme kernel Jupyter :
+   ```bash
+   python -m ipykernel install --user --name=venv --display-name "Python (venv)"
+   ```
+
+3. Dans Jupyter Notebook ou JupyterLab, sélectionnez le kernel **Python (venv)** pour exécuter les notebooks.
+
+---
+
+### 7. Utilisation avec Google Colab (Optionnel)
 Si vous travaillez sur Google Colab, vous pouvez créer et utiliser le fichier `.env` depuis Google Drive :
 
 1. Montez votre Google Drive dans Colab :
