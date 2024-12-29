@@ -70,7 +70,10 @@ Si vous souhaitez utiliser un GPU pour entraîner ou exécuter des modèles, vou
    ```
    Cette commande doit afficher la version de CUDA installée.
 
-4. Installez PyTorch en fonction de votre matériel :
+---
+
+### 4. Installation des dépendances
+1. Installez PyTorch en fonction de votre matériel :
    - **Pour les utilisateurs GPU** :
      Installez la version GPU-optimisée (CUDA 11.8) :
      ```bash
@@ -85,10 +88,7 @@ Si vous souhaitez utiliser un GPU pour entraîner ou exécuter des modèles, vou
 
 > **Note** : Si CUDA n'est pas installé ou si le GPU n'est pas compatible, PyTorch tombera automatiquement en mode CPU.
 
----
-
-### 4. Installer les dépendances restantes
-Installez les autres dépendances listées dans le fichier `requirements.txt` :
+2. Installez les autres dépendances listées dans le fichier `requirements.txt` :
 ```bash
 pip install -r requirements.txt
 ```
