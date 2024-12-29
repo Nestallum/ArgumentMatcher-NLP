@@ -4,10 +4,11 @@
 # Install the python-dotenv package
 python-dotenv
 
-# Main libraries for deep learning
+# Main libraries for deep learning (GPU support via CUDA)
 torch
 torchvision
 torchaudio
+-f https://download.pytorch.org/whl/torch_stable.html
 
 # Hugging Face and NLP tools
 transformers
