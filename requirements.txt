@@ -1,5 +1,5 @@
-# # Update pip to the latest version before installing the packages
-pip
+# Update pip to the latest version before installing the packages
+--upgrade pip
 
 # Install the python-dotenv package
 python-dotenv
