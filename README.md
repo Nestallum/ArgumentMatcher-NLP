@@ -51,12 +51,12 @@ Un environnement virtuel permet d'isoler les dépendances du projet. Suivez ces 
 
    - **Pour CUDA 11.8** :
      ```bash
-     pip install torch==2.3.1+cu118 torchvision==0.17.2+cu118 torchaudio==2.3.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html
+     pip install torch==2.2.2+cu118 torchvision==0.17.2+cu118 torchaudio==2.2.2+cu118 -f https://download.pytorch.org/whl/torch_stable.html
      ```
 
    - **Pour CUDA 11.7** :
      ```bash
-     pip install torch==2.3.1+cu117 torchvision==0.17.2+cu117 torchaudio==2.3.1+cu117 -f https://download.pytorch.org/whl/torch_stable.html
+      pip install torch==2.2.2+cu117 torchvision==0.17.2+cu117 torchaudio==2.2.2+cu117 -f https://download.pytorch.org/whl/torch_stable.html
      ```
 
 4. Installez les dépendances listées dans le fichier `requirements.txt` :
@@ -69,7 +69,7 @@ Un environnement virtuel permet d'isoler les dépendances du projet. Suivez ces 
    deactivate
    ```
 
-6. (Optionnel) **Ajouter l'environnement virtuel comme kernel Jupyter**
+6. **Ajouter l'environnement virtuel comme kernel Jupyter**
    Si vous souhaitez exécuter les notebooks avec cet environnement virtuel, ajoutez-le comme kernel Jupyter :
 
    1. Installez le package `ipykernel` dans l'environnement virtuel :
